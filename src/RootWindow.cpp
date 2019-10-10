@@ -6,7 +6,7 @@ const int WIDTH = std::max(ROW_LENGTH * CELL_SIZE + 100, 250);
 const int HEIGHT = std::max((DEFAULT_ROWS + 1) * CELL_SIZE, 150);
 
 RootWindow::RootWindow()
-	: wxFrame(NULL, wxID_ANY, wxString::Format(wxT("Cellular Automata v%d.%d"), MAJOR_VERSION, MINOR_VERSION), wxDefaultPosition, wxSize(WIDTH, HEIGHT))
+	: wxFrame(NULL, wxID_ANY, wxString::Format(wxT("Cellular Automata v%d.%d"), VERSION_MAJOR, VERSION_MINOR), wxDefaultPosition, wxSize(WIDTH, HEIGHT))
 {
 	parent = new wxPanel(this, wxID_ANY);
 	left_panel = new LeftPanel(parent);
