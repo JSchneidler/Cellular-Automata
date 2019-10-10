@@ -1,0 +1,12 @@
+# Executables
+*.exe
+
+# CMake
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+
+# Visual Studio
+.vs
+*.vcxproj*
+*.sln

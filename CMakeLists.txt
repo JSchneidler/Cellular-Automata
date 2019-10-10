@@ -1,0 +1,14 @@
+CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+PROJECT (Cellular-Automata)
+
+# Version
+SET (Cellular-Automata_VERSION_MAJOR 1)
+SET (Cellular-Automata_VERSION_MINOR 0)
+
+# Config
+CONFIGURE_FILE (
+  "${PROJECT_SOURCE_DIR}/Config.h.in"
+  "${PROJECT_BINARY_DIR}/Config.h"
+)
+
+ADD_SUBDIRECTORY(src)

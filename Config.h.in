@@ -1,0 +1,2 @@
+#define VERSION_MAJOR @Cellular-Automata_VERSION_MAJOR@
+#define VERSION_MINOR @Cellular-Automata_VERSION_MINOR@
