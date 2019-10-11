@@ -1,9 +1,26 @@
-INCLUDE_DIRECTORIES(${Cellular-Automata_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${Cellular-Automata_SOURCE_DIR}/include)
-
 SET (wxWidgets_CONFIGURATION mswud)
 FIND_PACKAGE (wxWidgets COMPONENTS core base REQUIRED)
 INCLUDE (${wxWidgets_USE_FILE})
 
-ADD_EXECUTABLE(Cellular-Automata App.cpp CellularAutomata.cpp RootWindow.cpp LeftPanel.cpp Grid.cpp)
+SET (INCLUDE ${Cellular-Automata_SOURCE_DIR}/include)
+SET (HEADERS
+  ${INCLUDE}/App.h
+  ${INCLUDE}/CellularAutomata.h
+  ${INCLUDE}/RootWindow.h
+  ${INCLUDE}/LeftPanel.h
+  ${INCLUDE}/Grid.h
+)
+SET (SOURCE
+  App.cpp
+  CellularAutomata.cpp
+  RootWindow.cpp
+  LeftPanel.cpp
+  Grid.cpp
+)
+
+SET (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
+
+INCLUDE_DIRECTORIES(${PROJECT_NAME} PRIVATE ${Cellular-Automata_SOURCE_DIR})
+INCLUDE_DIRECTORIES(${PROJECT_NAME} PRIVATE ${INCLUDE})
+ADD_EXECUTABLE (${PROJECT_NAME} ${HEADERS} ${SOURCE})
 TARGET_LINK_LIBRARIES (${PROJECT_NAME} ${wxWidgets_LIBRARIES})

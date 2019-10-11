@@ -1,11 +1,10 @@
-# Executables
-
 # CMake
 CMakeCache.txt
 CMakeFiles
 cmake_install.cmake
 Makefile
 build
+x64
 Config.h
 
 # Visual Studio
@@ -13,3 +12,5 @@ Config.h
 .vscode
 *.vcxproj*
 *.sln
+Debug
+Release
