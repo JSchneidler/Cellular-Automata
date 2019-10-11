@@ -1,9 +1,10 @@
 #include "Grid.h"
 
-Grid::Grid(wxPanel* parent)
+Grid::Grid(wxPanel* parent, const t_cells* cells)
 	: wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN)
 {
 	this->parent = parent;
+	this->cells = cells;
 
 	Connect(wxEVT_PAINT, wxPaintEventHandler(Grid::OnPaint));
 
@@ -15,9 +16,18 @@ void Grid::drawCells()
 	wxPaintDC dc(this);
 	dc.SetPen(wxPen(wxColor(0, 0, 0)));
 
-	for (int i = 0; i < DEFAULT_ROWS + 1; i++) {
-		for (int j = 0; j < ROW_LENGTH; j++) {
-			dc.DrawRectangle(j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+	wxBrush blackBrush = wxBrush(wxColor(0, 0, 0));
+	wxBrush whiteBrush = wxBrush(wxColor(255, 255, 255));
+
+	std::size_t cells_size = cells->size();
+	for (int row_index = 0; row_index != cells_size; ++row_index)
+	{
+		const std::vector<int> row = cells->at(row_index);
+		std::size_t row_size = row.size();
+		for (int column = 0; column < row_size; ++column)
+		{
+			dc.SetBrush(row[column] == 1 ? blackBrush : whiteBrush);
+			dc.DrawRectangle(column * CELL_SIZE, row_index * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 		}
 	}
 }

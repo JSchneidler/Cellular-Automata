@@ -7,12 +7,13 @@
 class Grid : public wxPanel
 {
 public:
-	Grid(wxPanel* parent);
+	Grid(wxPanel* parent, const t_cells* cells);
 
 	void drawCells();
 	void OnPaint(wxPaintEvent& event);
 
 private:
 	wxPanel* parent;
+	const t_cells* cells;
 };
 
