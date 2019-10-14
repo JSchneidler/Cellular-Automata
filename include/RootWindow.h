@@ -10,10 +10,16 @@ class RootWindow : public wxFrame
 public:
 	RootWindow();
 
+	void setSimulationParameters(const int rule, const int rows);
+
 private:
+	CellularAutomata* simulation;
 	wxPanel* parent;
 	LeftPanel* left_panel;
 	Grid* grid;
-	CellularAutomata* simulation;
+
+	int calculateWidth(int row_length);
+	int calculateHeight(int rows);
+	void redraw();
 };
 

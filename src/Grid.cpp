@@ -2,12 +2,10 @@
 
 Grid::Grid(wxPanel* parent, const t_cells* cells)
 	: wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN)
+	, parent(parent)
+	, cells(cells)
 {
-	this->parent = parent;
-	this->cells = cells;
-
 	Connect(wxEVT_PAINT, wxPaintEventHandler(Grid::OnPaint));
-
 	this->Center();
 }
 
@@ -26,7 +24,7 @@ void Grid::drawCells()
 		std::size_t row_size = row.size();
 		for (int column = 0; column < row_size; ++column)
 		{
-			dc.SetBrush(row[column] == 1 ? blackBrush : whiteBrush);
+			dc.SetBrush(row[column] > 0 ? blackBrush : whiteBrush);
 			dc.DrawRectangle(column * CELL_SIZE, row_index * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 		}
 	}
