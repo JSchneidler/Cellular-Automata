@@ -24,7 +24,7 @@ void Grid::drawCells()
 		std::size_t row_size = row.size();
 		for (int column = 0; column < row_size; ++column)
 		{
-			dc.SetBrush(row[column] > 0 ? blackBrush : whiteBrush);
+			dc.SetBrush(row[column] == 0 ? whiteBrush : blackBrush);
 			dc.DrawRectangle(column * CELL_SIZE, row_index * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 		}
 	}

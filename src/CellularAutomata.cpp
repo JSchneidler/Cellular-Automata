@@ -53,27 +53,27 @@ void CellularAutomata::simulateCell(const int row_index, const int column)
 {
 	int rule_index = 0, mask = 1;
 
-	if (row_index == 0)
+	if (column == 0)
 	{
 		rule_index = writeBit(rule_index, 2, cells[row_index][column]);
 		rule_index = writeBit(rule_index, 3, cells[row_index][column + 1]);
 		rule_index = writeBit(rule_index, 4, cells[row_index][column + 2]);
 	}
-	else if (row_index == 1)
+	else if (column == 1)
 	{
 		rule_index = writeBit(rule_index, 1, cells[row_index][column - 1]);
 		rule_index = writeBit(rule_index, 2, cells[row_index][column]);
 		rule_index = writeBit(rule_index, 3, cells[row_index][column + 1]);
 		rule_index = writeBit(rule_index, 4, cells[row_index][column + 2]);
 	}
-	else if (row_index == rows - 2)
+	else if (column == row_length - 2)
 	{
 		rule_index = writeBit(rule_index, 0, cells[row_index][column - 2]);
 		rule_index = writeBit(rule_index, 1, cells[row_index][column - 1]);
 		rule_index = writeBit(rule_index, 2, cells[row_index][column]);
 		rule_index = writeBit(rule_index, 3, cells[row_index][column + 1]);
 	}
-	else if (row_index == rows - 1)
+	else if (column == row_length - 1)
 	{
 		rule_index = writeBit(rule_index, 0, cells[row_index][column - 2]);
 		rule_index = writeBit(rule_index, 1, cells[row_index][column - 1]);
@@ -88,13 +88,15 @@ void CellularAutomata::simulateCell(const int row_index, const int column)
 
 	}
 
-	mask <<= (32 - rule_index);
-	cells[row_index + 1][column] = rule & mask;
+	mask <<= (31 - rule_index);
+	cells[row_index + 1][column] = ((rule & mask) == 0) ? 0 : 1;
 }
 
 int CellularAutomata::writeBit(int number, int index, int value)
 {
 	if (index > 4) throw "Cannot write past 5th bit";
+
+	value = value >= 1 ? 1 : 0;
 
 	switch (index)
 	{
