@@ -29,7 +29,7 @@ int CellularAutomata::getRule()
 
 void CellularAutomata::setRows(const int rows)
 {
-	this->rows = rows;
+	this->rows = rows + 1;
 	this->row_length = (rows * 2) + 1;
 }
 
@@ -88,7 +88,7 @@ void CellularAutomata::simulateCell(const int row_index, const int column)
 
 	}
 
-	mask <<= (31 - rule_index);
+	mask <<= rule_index;
 	cells[row_index + 1][column] = ((rule & mask) == 0) ? 0 : 1;
 }
 

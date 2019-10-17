@@ -11,6 +11,11 @@ Grid::Grid(wxPanel* parent, const t_cells* cells)
 
 void Grid::drawCells()
 {
+	Refresh();
+}
+
+void Grid::OnPaint(wxPaintEvent& event)
+{
 	wxPaintDC dc(this);
 	dc.SetPen(wxPen(wxColor(0, 0, 0)));
 
@@ -28,9 +33,4 @@ void Grid::drawCells()
 			dc.DrawRectangle(column * CELL_SIZE, row_index * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 		}
 	}
-}
-
-void Grid::OnPaint(wxPaintEvent& event)
-{
-	drawCells();
 }
